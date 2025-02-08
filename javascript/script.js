@@ -126,6 +126,8 @@ for (const mov of movements) {
 console.log(newArr);
 */
 
+/*
+
 //* Filter method
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
@@ -141,6 +143,21 @@ const withdrawal = movements.filter(function (mov) {
   return mov < 0;
 });
 console.log(withdrawal);
+
+*/
+
+//* Reduce method
+//* Maximum value using Reduce
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const max = movements.reduce(function (acc, mov) {
+  if (acc > mov) {
+    return acc;
+  } else {
+    return mov;
+  }
+}, movements[0]);
+console.log(max);
+
 const displayMovements = function (movments) {
   containerMovements.innerHTML = '';
 
@@ -160,7 +177,18 @@ const displayMovements = function (movments) {
 
 displayMovements(account1.movements);
 
-// Add Username
+//* Display balance calculate
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce(function (acc, mov) {
+    return acc + mov;
+  }, 0);
+
+  labelBalance.textContent = `${balance}💸`;
+};
+
+calcDisplayBalance(account1.movements);
+
+//* Add Username
 const createUsername = function (accs) {
   accs.forEach(function (acc) {
     acc.userName = acc.owner
