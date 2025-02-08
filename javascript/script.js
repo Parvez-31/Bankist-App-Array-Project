@@ -7,7 +7,7 @@
 // Data
 const account1 = {
   owner: 'Jonas Schmedtmann',
-  movements: [200, 450, -400, 3000, -650, -130, 70, 1300, 1000],
+  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
   pin: 1111,
 };
@@ -108,6 +108,19 @@ currencie.forEach(function (value, _, set) {
   console.log(`${value} : ${value}`);
 });
 */
+
+//map method practice
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const eurToUSD = 1.1;
+const movementsUSD = movements.map(mov => mov * eurToUSD);
+console.log(movementsUSD);
+
+//For of loop
+let newArr = [];
+for (const mov of movements) {
+  newArr.push(mov * eurToUSD);
+}
+console.log(newArr);
 
 const displayMovements = function (movments) {
   containerMovements.innerHTML = '';
