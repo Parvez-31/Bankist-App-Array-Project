@@ -110,17 +110,21 @@ currencie.forEach(function (value, _, set) {
 */
 
 //map method practice
+/*
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const eurToUSD = 1.1;
 const movementsUSD = movements.map(mov => mov * eurToUSD);
 console.log(movementsUSD);
+*/
 
 //For of loop
+/*
 let newArr = [];
 for (const mov of movements) {
   newArr.push(mov * eurToUSD);
 }
 console.log(newArr);
+*/
 
 const displayMovements = function (movments) {
   containerMovements.innerHTML = '';
@@ -140,3 +144,17 @@ const displayMovements = function (movments) {
 };
 
 displayMovements(account1.movements);
+
+// Add Username
+const createUsername = function (accs) {
+  accs.forEach(function (acc) {
+    acc.userName = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(mov => mov[0])
+      .join('');
+  });
+};
+
+createUsername(accounts);
+console.log(accounts);
