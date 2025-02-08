@@ -109,7 +109,7 @@ currencie.forEach(function (value, _, set) {
 });
 */
 
-//map method practice
+//* map method practice
 /*
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const eurToUSD = 1.1;
@@ -117,7 +117,7 @@ const movementsUSD = movements.map(mov => mov * eurToUSD);
 console.log(movementsUSD);
 */
 
-//For of loop
+//* For of loop
 /*
 let newArr = [];
 for (const mov of movements) {
@@ -126,6 +126,21 @@ for (const mov of movements) {
 console.log(newArr);
 */
 
+//* Filter method
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+//* Deposit
+const deposit = movements.filter(function (mov) {
+  return mov > 0;
+});
+console.log(deposit);
+
+//* withdrawal
+const withdrawal = movements.filter(function (mov) {
+  return mov < 0;
+});
+console.log(withdrawal);
 const displayMovements = function (movments) {
   containerMovements.innerHTML = '';
 
@@ -157,4 +172,3 @@ const createUsername = function (accs) {
 };
 
 createUsername(accounts);
-console.log(accounts);
