@@ -156,7 +156,7 @@ const max = movements.reduce(function (acc, mov) {
     return mov;
   }
 }, movements[0]);
-console.log(max);
+// console.log(max);
 
 const displayMovements = function (movments) {
   containerMovements.innerHTML = '';
@@ -168,7 +168,7 @@ const displayMovements = function (movments) {
           <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-          <div class="movements__value">${mov}</div>
+          <div class="movements__value">${mov}€</div>
         </div>`;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -183,10 +183,38 @@ const calcDisplayBalance = function (movements) {
     return acc + mov;
   }, 0);
 
-  labelBalance.textContent = `${balance}💸`;
+  labelBalance.textContent = `${balance}€`;
 };
 
 calcDisplayBalance(account1.movements);
+
+//* Balance summary
+const calcBalanceSummary = function (movements) {
+  // Total Deposits
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  // Total Withdrawal
+  const outcomes = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(outcomes)}€`;
+
+  // Total Interest
+  const interestRate = 1.2;
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(mov => (mov * interestRate) / 100)
+    .filter((mov, _, arr) => {
+      // console.log(arr);
+      return mov >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}`;
+};
+calcBalanceSummary(account1.movements);
 
 //* Add Username
 const createUsername = function (accs) {
@@ -200,3 +228,12 @@ const createUsername = function (accs) {
 };
 
 createUsername(accounts);
+
+//* PIPELINE
+const eurToUSD = 1.1;
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUSD)
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(totalDepositsUSD);
