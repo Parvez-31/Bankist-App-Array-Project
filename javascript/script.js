@@ -244,4 +244,12 @@ console.log(movements);
 console.log(getFind);
 
 const getAccount = accounts.find(mov => mov.owner === 'Jessica Davis');
-console.log(getAccount);
+// console.log(getAccount);
+
+//* same things in for of loop
+for (const account of accounts) {
+  // console.log(account);
+  if (account.owner === 'Jessica Davis') {
+    console.log(account);
+  }
+}
