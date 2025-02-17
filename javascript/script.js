@@ -175,8 +175,6 @@ const displayMovements = function (movments) {
   });
 };
 
-displayMovements(account1.movements);
-
 //* Display balance calculate
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce(function (acc, mov) {
@@ -186,27 +184,25 @@ const calcDisplayBalance = function (movements) {
   labelBalance.textContent = `${balance}€`;
 };
 
-calcDisplayBalance(account1.movements);
-
 //* Balance summary
-const calcBalanceSummary = function (movements) {
+const calcBalanceSummary = function (acc) {
   // Total Deposits
-  const incomes = movements
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
 
   // Total Withdrawal
-  const outcomes = movements
+  const outcomes = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(outcomes)}€`;
 
   // Total Interest
-  const interestRate = 1.2;
-  const interest = movements
+
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(mov => (mov * interestRate) / 100)
+    .map(mov => (mov * acc.interestRate) / 100)
     .filter((mov, _, arr) => {
       // console.log(arr);
       return mov >= 1;
@@ -214,7 +210,6 @@ const calcBalanceSummary = function (movements) {
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interest}`;
 };
-calcBalanceSummary(account1.movements);
 
 //* Add Username
 const createUsername = function (accs) {
@@ -238,6 +233,35 @@ const totalDepositsUSD = movements
 
 console.log(totalDepositsUSD);
 
+// Event handler
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  currentAccount = accounts.find(acc => {
+    return acc.userName === inputLoginUsername.value;
+  });
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and message
+    labelWelcome.textContent = `Welcome back ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    containerApp.style.opacity = 1;
+
+    // Clear input fields
+    inputLoginUsername.value = inputClosePin.value = '';
+
+    // Display movements
+    displayMovements(currentAccount.movements);
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+    // Display summary
+    calcBalanceSummary(currentAccount);
+  }
+});
+/*
 //* find() method
 const getFind = movements.find(mov => mov < 0);
 console.log(movements);
@@ -253,3 +277,4 @@ for (const account of accounts) {
     console.log(account);
   }
 }
+*/
