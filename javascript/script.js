@@ -237,3 +237,11 @@ const totalDepositsUSD = movements
   .reduce((acc, mov) => acc + mov, 0);
 
 console.log(totalDepositsUSD);
+
+//* find() method
+const getFind = movements.find(mov => mov < 0);
+console.log(movements);
+console.log(getFind);
+
+const getAccount = accounts.find(mov => mov.owner === 'Jessica Davis');
+console.log(getAccount);
