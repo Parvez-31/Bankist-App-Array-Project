@@ -286,8 +286,33 @@ btnTransfer.addEventListener('click', e => {
 
     // updateUI
     updateUI(currentAccount);
+    inputTransferAmount.value = inputTransferTo.value = '';
   }
 });
+
+btnClose.addEventListener('click', e => {
+  e.preventDefault();
+
+  if (
+    currentAccount.userName === inputCloseUsername.value &&
+    currentAccount.pin === Number(inputClosePin.value)
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.userName === currentAccount.userName
+    );
+
+    console.log(index);
+
+    // remove acc
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+
+  inputCloseUsername.value = inputClosePin.value = '';
+});
+
 /*
 //* find() method
 const getFind = movements.find(mov => mov < 0);
