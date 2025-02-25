@@ -330,3 +330,44 @@ for (const account of accounts) {
   }
 }
 */
+
+//* findLast() method
+
+/*
+const inventory = [
+  { name: 'apples', quantity: 2 },
+  { name: 'bananas', quantity: 0 },
+  { name: 'fish', quantity: 1 },
+  { name: 'cherries', quantity: 5 },
+];
+
+//return true inventory stock is low
+// Using arrow function and destructuring
+const result = inventory.findLast(({ quantity }) => quantity < 2);
+console.log(result);
+
+//Another Example
+function isPrime(element) {
+  if (element % 2 === 0 || element < 2) {
+    return false;
+  }
+
+  for (let i = 3; i <= Math.sqrt(element); i = i + 2) {
+    if (element % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log([4, 6, 8, 12].findLast(isPrime));
+console.log([4, 5, 7, 8, 9, 11, 12].findLast(isPrime));
+*/
+
+//* findLastIndex() method
+/*
+const arr = [5, 12, 50, 130, 44];
+const lastIndex = item => item > 45;
+
+console.log(arr.findLastIndex(lastIndex));
+*/
