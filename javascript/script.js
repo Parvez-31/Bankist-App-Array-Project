@@ -400,8 +400,15 @@ console.log(movements);
 console.log(movements.includes(-200));
 
 //CONDITION
+//* some() method
 console.log(movements.some(item => item === -130));
 
 const anyDeposite = movements.some(item => item > 5000);
 console.log(anyDeposite);
+*/
+
+//* every() method
+/*
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
 */
