@@ -371,3 +371,18 @@ const lastIndex = item => item > 45;
 
 console.log(arr.findLastIndex(lastIndex));
 */
+
+//* includes() method
+//EQUALITY
+
+/*
+console.log(movements);
+
+console.log(movements.includes(-200));
+
+//CONDITION
+console.log(movements.some(item => item === -130));
+
+const anyDeposite = movements.some(item => item > 5000);
+console.log(anyDeposite);
+*/
